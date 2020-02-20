@@ -1,0 +1,25 @@
+# {{ $gateway := index .Values "gateways" "istio-ingressgateway" }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-gateway-ing
+  namespace: istio-system #{{ .Release.Namespace }}
+  annotations:
+    # kubernetes.io/ingress.allow-http: "false"
+spec:
+  tls:
+  - secretName: cert1
+  - secretName: cert2
+  rules:
+  # - host: nginx.ozrlz.com
+  #   http:
+  #     paths:
+  #     - backend:
+  #         serviceName: ingress-gateway-np
+  #         servicePort: http
+  - host: "*.ozrlz.com"
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-gateway-np
+          servicePort: http

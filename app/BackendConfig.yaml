@@ -1,0 +1,8 @@
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
+  name: flask-backend-config
+  namespace: istio-system
+spec:
+  customRequestHeaders:
+    Host: flask.ozrlz.com
